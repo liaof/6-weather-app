@@ -19,7 +19,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./Assets/CSS/style.css" />
-    <title>Document</title>
+    <title>Weather Dashboard</title>
 </head>
 <body>
     <header class = "card bg-dark mb-3 rounded-0">
@@ -45,22 +45,22 @@
         <div class = "col card" id = "ri">
             
             <div class = "card-body" id = "cityInfo">
-                <h2 class = "card-title pl-4 pt-4 mb-5" id="currentCityDate">Toronto</h2>
+                <h2 class = "card-title  mb-5" id="currentCityDate">  </h2>
                 <p id = "tempDisplay">
-                    Temperature: <span id = "tempValue">12</span> degrees
+                    Temperature: <span id = "tempValue"></span> ℃
                 </p>
                 <p id = "humiDisplay">
-                    Humidity: <span id = "humiValue">12</span> %
+                    Humidity: <span id = "humiValue"></span> %
                 </p>
                 <p id = "windDisplay">
-                    Wind Speed: <span id = "windValue">12</span> MPH
+                    Wind Speed: <span id = "windValue"></span> km/h
                 </p>
                 <p id = "uvDisplay">
-                    UV Index: <span id = "uvValue">12</span>
+                    UV Index: <span id = "uvValue"></span>
                 </p>
             </div>
-            <div class = "card-body"></div>
-            <div id = "forecast">   
+            
+            <div class = "card-body" id = "forecast">   
                 <h3 >5 Day Forecast:</h3>
                 
                     <div class = "d-flex my-3" id = "5dayWeek">
