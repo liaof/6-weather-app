@@ -7,23 +7,51 @@ var generateCurrentInfo = function(data){
     var wind = data.current.wind_speed;
     var uv = data.current.uvi;
     
-    $("#tempValue").html(temp);
-    $("#humiValue").html(humi);
-    $("#windValue").html(wind);
-    $("#uvValue").html(uv);
+    $("#tempDisplay").html("Temperature: "+temp+"℃");
+    $("#humiDisplay").html("Humidity: "+humi+"%");
+    $("#windDisplay").html("Wind Speed: "+wind+"km/h");
+    $("#uvDisplay").html("UV Index: "+uv);
    
 };
 var generateForecastInfo = function(data){
+    console.log(data);
+    console.log(data.daily[0]);
+    var dayCard = [];
+    for (var i = 0; i<5;i++){
+        dayCard[i] = $(".forecastCard[index="+i+"]");
+        
+        console.log(dayCard[i][0]);
+        console.log(data)
+        var temp = data.daily[i].feels_like.day;
+        var humi = data.daily[i].humidity;
+        var icon =  data.daily[i].weather[0].icon;
+        var date = moment().add(i, 'days').format("MMM Do");
 
+       
+
+        
+        var iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
+        var ikon = $("<img>").attr("id", "wicon").attr("src", iconurl).attr("alt", "Weather Icon");
+        $(dayCard[i][0]).children("#icon").append(ikon);
+        //console.log(iconurl);
+        //console.log(icon);
+        //console.log($(dayCard[i][0]).children("#icon").children("#wicon"));
+        $(dayCard[i][0]).children("#forecastDate").html(date);
+        
+        $(dayCard[i][0]).children("#forecastTempDisplay").html("Temp: "+temp+"℃");
+        $(dayCard[i][0]).children("#forecastHumiDisplay").html("Humidity: "+humi+"%");
+        //$(dayCard[i]).children[3].html(humi);
+        //console.log($(dayCard[0]).children("#forecastTempValue").val)
+    }
 }
 var getWeatherRepo = function(lat, lon){
     console.log(lat, lon);
     var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&exclude=minutely,hourly,alerts&units=metric&appid="+apiKey;
     fetch(apiUrl).then(function(response){
         if(response.ok){
-            console.log(response);
+            
             response.json().then(function(data){
-                console.log(data);
+                
                 generateCurrentInfo(data);
                 generateForecastInfo(data);
             })
