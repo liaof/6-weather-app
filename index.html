@@ -22,6 +22,110 @@
     <title>Document</title>
 </head>
 <body>
+    <header class = "card bg-dark mb-3">
+        <h1 class = "justify-content-center d-flex align-items-center h-100 m-4 text-white">Weather Dashboard</p>
+    </header>
+    <div class = "row page-content">
+        <div class = "col-3 ">
+            <form class = "city-form">
+                
+                <div class="form-group">
+                  <label for="thisCity">Search for a City</label>
+                  <input class="form-control" id="thisCity" >
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <div class = "mt-5 card searchHistory">
+
+            </div>
+        </div>
+        <div class = "col card  ">
+            
+            <div class = "card-body" id = "cityInfo">
+                <h2 class = "card-title pl-4 pt-4 mb-5" id="currentCityDate">Toronto</h2>
+                <p id = "tempDisplay">
+                    Temperature: <span id = "tempValue">12</span> degrees
+                </p>
+                <p id = "humiDisplay">
+                    Humidity: <span id = "humiValue">12</span> %
+                </p>
+                <p id = "windDisplay">
+                    Wind Speed: <span id = "windValue">12</span> MPH
+                </p>
+                <p id = "uvDisplay">
+                    UV Index: <span id = "uvValue">12</span>
+                </p>
+            </div>
+            <div class = "card-body"></div>
+            <div id = "forecast">   
+                <h3 >5 Day Forecast:</h3>
+                
+                    <div class = "d-flex my-3" id = "5dayWeek">
+                        <!--day 1-->
+                        <div class = "card w-25 mr-2 forecastCard" id = "day1Card">
+                            <h4 class = "card-title forecastDate" id = "date1">1/3/1241</h4>
+                            <span class = "weather-icon fas fa-adjust my-4" id="day1Icon"></span>
+                            <p id = "forecastTempDisplay">Temp: 
+                                <span id = "forecastTempValue"></span> degrees
+                            </p>
+                            <p id = "forecastHumiDisplay"> Humidity: 
+                                <span id = "forecastHumiValue"></span> %
+                            </p>
+                        </div>
+                        <!--day 2-->
+                        <div class = "card w-25 mr-2 forecastCard" id = "day2Card">
+                            <h4 class = "card-title forecastDate" id = "date2">2/3/1241</h4>
+                            <span class = "weather-icon fas fa-adjust my-4" id="day2Icon"></span>
+                            <p id = "forecastTempDisplay">Temp: 
+                                <span id = "forecastTempValue"></span> degrees
+                            </p>
+                            <p id = "forecastHumiDisplay"> Humidity: 
+                                <span id = "forecastHumiValue"></span> %
+                            </p>
+                        </div>
+                        <!--day 3-->
+                        <div class = "card w-25 mr-2 forecastCard" id = "day3Card">
+                            <h4 class = "card-title forecastDate" id= "date3">3/3/1241</h4>
+                            <span class = "weather-icon fas fa-adjust my-4" id="day3Icon"></span>
+                            <p id = "forecastTempDisplay">Temp: 
+                                <span id = "forecastTempValue"></span> degrees
+                            </p>
+                            <p id = "forecastHumiDisplay"> Humidity: 
+                                <span id = "forecastHumiValue"></span> %
+                            </p>
+                        </div>
+                        <!--day 4-->
+                        <div class = "card w-25 mr-2 forecastCard" id = "day4Card">
+                            <h4 class = "card-title forecastDate" id= "date4">4/3/1241</h4>
+                            <span class = "weather-icon fas fa-adjust my-4" id="day4Icon"></span>
+                            <p id = "forecastTempDisplay">Temp: 
+                                <span id = "forecastTempValue"></span> degrees
+                            </p>
+                            <p id = "forecastHumiDisplay"> Humidity: 
+                                <span id = "forecastHumiValue"></span> %
+                            </p>
+                        </div>
+                        <!--day 5-->
+                        <div class = "card w-25 forecastCard" id = "day5Card">
+                            <h4 class = "card-title forecastDate" id="date5">5/3/1241</h4>
+                            <span class = "weather-icon fas fa-adjust my-4" id="day5Icon"></span>
+                            <p id = "forecastTempDisplay">Temp: 
+                                <span id = "forecastTempValue"></span> degrees
+                            </p>
+                            <p id = "forecastHumiDisplay"> Humidity: 
+                                <span id = "forecastHumiValue"></span> %
+                            </p>
+                        </div>
+                    </div>
+                    
+                
+            </div>
+            
+            
+
+        </div>
+    </div>
 
 
 
@@ -32,6 +136,6 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="./Assets/Javascript/script.js"></script>
+    <script src="./Assets/JS/script.js"></script>
 </body>
 </html>

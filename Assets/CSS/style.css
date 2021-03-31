@@ -1,0 +1,11 @@
+.page-content{
+
+    margin: auto 3vw auto 3vw;
+}
+
+.forecastCard{
+    background-color:blue;
+    padding: 10px;
+    border-radius: 15px;
+    color: white;
+}
