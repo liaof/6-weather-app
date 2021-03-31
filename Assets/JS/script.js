@@ -10,7 +10,14 @@ var generateCurrentInfo = function(data){
     $("#tempDisplay").html("Temperature: "+temp+"℃");
     $("#humiDisplay").html("Humidity: "+humi+"%");
     $("#windDisplay").html("Wind Speed: "+wind+"km/h");
-    $("#uvDisplay").html("UV Index: "+uv);
+    $("#uvDisplay").html("UV Index: "+uv).addClass("rounded");
+    if (uv<=3){
+        $("#uvDisplay").addClass("text-success"); 
+    } else if (uv>3&&u<7){
+        $("#uvDisplay").addClass("text-warning"); 
+    } else if (uv<=7){
+        $("#uvDisplay").addClass("text-danger"); 
+    }
    
 };
 var generateForecastInfo = function(data){
