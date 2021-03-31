@@ -22,25 +22,27 @@
     <title>Document</title>
 </head>
 <body>
-    <header class = "card bg-dark mb-3">
+    <header class = "card bg-dark mb-3 rounded-0">
         <h1 class = "justify-content-center d-flex align-items-center h-100 m-4 text-white">Weather Dashboard</p>
     </header>
     <div class = "row page-content">
         <div class = "col-3 ">
-            <form class = "city-form">
-                
-                <div class="form-group">
-                  <label for="thisCity">Search for a City</label>
-                  <input class="form-control" id="thisCity" >
+            <form class = "city-form bg-light">
+                <div class="form-group p-3 d-flex flex-column">
+                  <label class = "font-weight-bold w-100" for="thisCity">Search for a City:</label>
+                  <div class = "d-flex">
+                    <input class="form-control" id="thisCity" >
+                    <button type="submit" class="btn btn-primary fas fa-search w-20"></button>
+                  </div>
                 </div>
                 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                
             </form>
             <div class = "mt-5 card searchHistory">
 
             </div>
         </div>
-        <div class = "col card  ">
+        <div class = "col card" id = "ri">
             
             <div class = "card-body" id = "cityInfo">
                 <h2 class = "card-title pl-4 pt-4 mb-5" id="currentCityDate">Toronto</h2>
