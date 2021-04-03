@@ -102,7 +102,7 @@ var getWeatherRepo = function(lat, lon){
 //the OWP api only takes co-ordinates as input. Luckily they have another api we can use to convert city names to their co-ordinates
 var getCoordinates = function(thisCity, createBtn){
     //use the OpenWeatherMap api to find the co-ordinates of our city
-    var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q="+thisCity+"&limit=1&appid="+apiKey;
+    var apiUrl = "https://api.openweathermap.org/geo/1.0/direct?q="+thisCity+"&limit=1&appid="+apiKey;
     fetch(apiUrl).then(function(response){
         if(response.ok){
 
