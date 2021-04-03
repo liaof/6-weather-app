@@ -1,8 +1,9 @@
 var apiKey = "f25b698e5aca7ef3e7493ebf59f1c37d";
 var cities = [];
 var dayCards = [$("day1"),$("day2"),$("day3"),$("day4"),$("day5")];
+var validInput = false;
 
-var createHistoryLinks = function(cities){
+var createHistoryBtns = function(cities){
     var tempBtnEl = $("<button>").addClass("btn btn-primary w-100 mb-1").html("<p class = 'm-1'>"+cities+"</p>").attr("id","historyBtn");
     $("#searchHistory").append(tempBtnEl);
 
@@ -15,7 +16,7 @@ var loadCities = function() {
         cities = new Array;
     };
     for (var i = 0; i<cities.length; i++){
-        createHistoryLinks(cities[i]);
+        createHistoryBtns(cities[i]);
     };
     
 };
@@ -35,11 +36,11 @@ var generateCurrentInfo = function(data){
     $("#humiDisplay").html("Humidity: "+humi+"%");
     $("#windDisplay").html("Wind Speed: "+wind+"km/h");
     $("#uvDisplay").html("UV Index: "+uv).addClass("rounded");
-   
     //UV index coloring thing
+    $("#uvDisplay").removeClass();
     if (uv>=7){//high UV index
         $("#uvDisplay").addClass("text-danger"); 
-    } else if (uv>3&&u<7){
+    } else if (uv>3&&uv<7){
         $("#uvDisplay").addClass("text-warning"); 
     } else if (uv<=3){//low UV index
         $("#uvDisplay").addClass("text-success"); 
@@ -99,7 +100,7 @@ var getWeatherRepo = function(lat, lon){
 };
 
 //the OWP api only takes co-ordinates as input. Luckily they have another api we can use to convert city names to their co-ordinates
-var getCoordinates = function(thisCity){
+var getCoordinates = function(thisCity, createBtn){
     //use the OpenWeatherMap api to find the co-ordinates of our city
     var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q="+thisCity+"&limit=1&appid="+apiKey;
     fetch(apiUrl).then(function(response){
@@ -111,6 +112,10 @@ var getCoordinates = function(thisCity){
                     //update card title with city name and current date
                     $("#currentCityDate").html(data[0].name+", "+moment().format("MMM Do YYYY"));
                     getWeatherRepo(data[0].lat, data[0].lon);
+                    if(createBtn){
+                        createHistoryBtns(thisCity);
+                        saveCities();
+                    };
                 } else {//catch successfully fetched data that does not have the information we need
                     document.location.replace("./index.html");
                 }
@@ -122,29 +127,21 @@ var getCoordinates = function(thisCity){
 };
 
 //event listener for form button
-$(".city-form").on("click",".btn", function(event){
+$(".city-form").on("click","#formBtn", function(event){
     event.preventDefault();
     var thisCity = $("#thisCity").val();
-    console.log(thisCity);
     //add current city name to array of city names for storage
     cities.push(thisCity);
     //populate page elements
-    getCoordinates(thisCity);
-    //create a search history link
-    createHistoryLinks(thisCity);
-    saveCities();
-    
-    
-    
-    
+    getCoordinates(thisCity,true);
 });
 
 //event listener for history buttons
 $("#searchHistory").on("click","#historyBtn", function(event){
     //event.preventDefault();
     var thisCity = $(this).children().html();
-    
-    getCoordinates(thisCity);
+    //prevents doubling up on search history brns
+    getCoordinates(thisCity,false);
 })
 
 loadCities();
