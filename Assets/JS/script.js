@@ -1,5 +1,5 @@
 var apiKey = "f25b698e5aca7ef3e7493ebf59f1c37d";
-var cities = {};
+var cities = [];
 var dayCards = [$("day1"),$("day2"),$("day3"),$("day4"),$("day5")];
 
 var createHistoryLinks = function(){
@@ -11,19 +11,15 @@ var loadCities = function() {
     cities = JSON.parse(localStorage.getItem("cities"));
     
     //loop over each cities value
-    if (!cities){
-        cities = {lat: "", lon: ""};
-
-    }
+    
     //loop over each cities object
     $.each(cities, function(){
-        createHistorLinks(cities.lat, cities.lon);
+        createHistorLinks();
     });
 };
 
-var saveCities = function(thisLat,thisLon){
-    cities.lat=thisLat;
-    cities.lon=thisLon;
+var saveCities = function(){
+ 
     console.log("saved");
     localStorage.setItem("cities", JSON.stringify(cities));
 };
@@ -114,7 +110,8 @@ var getCoordinates = function(thisCity){
                     $("#currentCityDate").html(data[0].name+" "+moment().format("MMM Do"));
                     getWeatherRepo(data[0].lat, data[0].lon);
                     
-                    saveCities(data[0].lat, data[0].lon);
+                    
+                    saveCities();
                 } else {//catch successfully fetched data that does not have the information we need
                     document.location.replace("./index.html");
                 }
@@ -132,7 +129,7 @@ $(".city-form").on("click",".btn", function(event){
     getCoordinates(thisCity);
     console.log("finished");
     cities.push(thisCity);
-    saveCities();
+    
     console.log(cities);
 });
 
