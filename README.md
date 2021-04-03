@@ -1,6 +1,6 @@
 # six-weather-app
 
-#### [ Site Deployed Here](https://openweathermap.org/api)
+### [ Site Deployed Here](https://liaof.github.io/six-weather-app/)
 
 ## Acceptance Criteria 
 
@@ -42,10 +42,10 @@ UV color coding<br /><br />
 
 
 ### Resources Used
-OpenWeather API
-FontAwesome
-JQuery
-Bootstrap
-Momentjs
+OpenWeather API<br />
+FontAwesome<br />
+JQuery<br />
+Bootstrap<br />
+Momentjs<br />
 [www.w3schools](https://www.w3schools.com/)<br />
 [This blogpost concerning localStorage](https://blog.logrocket.com/localstorage-javascript-complete-guide/)
