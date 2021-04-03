@@ -3,32 +3,27 @@ var cities = [];
 var dayCards = [$("day1"),$("day2"),$("day3"),$("day4"),$("day5")];
 
 var createHistoryLinks = function(cities){
-    console.log(cities)
-    var tempBtnEl = $("<button>").addClass("btn btn-primary w-100 mb-1").html("<p class = 'm-1'>"+cities+"</p>");
+    var tempBtnEl = $("<button>").addClass("btn btn-primary w-100 mb-1").html("<p class = 'm-1'>"+cities+"</p>").attr("id","historyBtn");
     $("#searchHistory").append(tempBtnEl);
-    //
-//$("searchHistory").append("cityLink");
+
 };
+
 var loadCities = function() {
     cities = JSON.parse(localStorage.getItem("cities"));
     
-    //loop over each cities value
-    
-    //loop over each cities object
-    //$.each(cities, function(){
-     //   createHistorLinks(cities);
-    //});
-    console.log(cities);
+    if (!cities){
+        cities = new Array;
+    };
     for (var i = 0; i<cities.length; i++){
         createHistoryLinks(cities[i]);
-    }
+    };
+    
 };
 
 var saveCities = function(){
- 
-    console.log("saved");
     localStorage.setItem("cities", JSON.stringify(cities));
 };
+
 //fill out the top right quad of the site
 var generateCurrentInfo = function(data){
     var temp = data.current.feels_like;
@@ -36,7 +31,6 @@ var generateCurrentInfo = function(data){
     var wind = data.current.wind_speed;
     var uv = data.current.uvi;
     
-
     $("#tempDisplay").html("Temperature: "+temp+"℃");
     $("#humiDisplay").html("Humidity: "+humi+"%");
     $("#windDisplay").html("Wind Speed: "+wind+"km/h");
@@ -86,6 +80,7 @@ var generateForecastInfo = function(data){
     }
 };
 
+//given the co-ordinates of our city, fetch the weather api
 var getWeatherRepo = function(lat, lon){
     
     var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&exclude=minutely,hourly,alerts&units=metric&appid="+apiKey;
@@ -116,9 +111,6 @@ var getCoordinates = function(thisCity){
                     //update card title with city name and current date
                     $("#currentCityDate").html(data[0].name+", "+moment().format("MMM Do YYYY"));
                     getWeatherRepo(data[0].lat, data[0].lon);
-                    
-                    //save the input if it was a real city
-                    saveCities();
                 } else {//catch successfully fetched data that does not have the information we need
                     document.location.replace("./index.html");
                 }
@@ -129,15 +121,30 @@ var getCoordinates = function(thisCity){
     })
 };
 
+//event listener for form button
 $(".city-form").on("click",".btn", function(event){
     event.preventDefault();
     var thisCity = $("#thisCity").val();
+    console.log(thisCity);
+    //add current city name to array of city names for storage
+    cities.push(thisCity);
+    //populate page elements
+    getCoordinates(thisCity);
+    //create a search history link
+    createHistoryLinks(thisCity);
+    saveCities();
+    
+    
+    
+    
+});
+
+//event listener for history buttons
+$("#searchHistory").on("click","#historyBtn", function(event){
+    //event.preventDefault();
+    var thisCity = $(this).children().html();
     
     getCoordinates(thisCity);
-    console.log("finished");
-    cities.push(thisCity);
-    
-    console.log(cities);
-});
+})
 
 loadCities();
