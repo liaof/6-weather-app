@@ -60,7 +60,7 @@ var generateForecastInfo = function(data){
         var icon =  data.daily[i].weather[0].icon;
         var date = moment().add(i+1, 'days').format("MMM Do");
 
-        var iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
+        var iconurl = "https://openweathermap.org/img/w/" + icon + ".png";
        //console.log(iconurl);
 
         $("#iconimg").attr("src", iconurl);
