@@ -1,7 +1,6 @@
 var apiKey = "f25b698e5aca7ef3e7493ebf59f1c37d";
 var cities = [];
 var dayCards = [$("day1"),$("day2"),$("day3"),$("day4"),$("day5")];
-var validInput = false;
 
 var createHistoryBtns = function(cities){
     var tempBtnEl = $("<button>").addClass("btn btn-primary w-100 mb-1").html("<p class = 'm-1'>"+cities+"</p>").attr("id","historyBtn");
@@ -61,13 +60,7 @@ var generateForecastInfo = function(data){
         var date = moment().add(i+1, 'days').format("MMM Do");
 
         var iconurl = "https://openweathermap.org/img/w/" + icon + ".png";
-       //console.log(iconurl);
-
         $("#iconimg").attr("src", iconurl);
-        //console.log($("#iconimg"));
-
-        //console.log($(dayCardEl[i].children().val));
-        //console.log($(dayCardEl[i][0]).children[1]);
 
         //finds the <img> element of the currently indexed dayCard
         var currentIconSpaceEl = $(dayCardEl[i].children("#icon").children("#iconimg"));
