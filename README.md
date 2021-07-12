@@ -1,6 +1,6 @@
 # six-weather-app
 
-### [ Site Deployed Here](https://liaof.github.io/six-weather-app/)
+### [ Site Deployed Here](https://liaof.github.io/6-weather-app/)
 
 
 ## Project Summary
